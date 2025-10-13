@@ -4,13 +4,13 @@ import requests
 username = login.LogIN()[True]
 
 def post_message(message,username):
-    requests.post(f'http://127.0.0.1:5000/main/', data={'data': message,"username":username})
+    requests.post(f'http://http://192.168.191.173:5000/main/', data={'data': message,"username":username})
 
 
 def get_messages(username):
-    response =requests.get(f'http://127.0.0.1:5000/main/',data={'username':username})
+    response =requests.get(f'http://http://192.168.191.173:5000/main/',data={'username':username})
     #print(response.text)
-    messages.set(requests.get(f'http://127.0.0.1:5000/main/',data={'username':username}).text)
+    messages.set(requests.get(f'http://http://192.168.191.173:5000/main/',data={'username':username}).text)
     chat_window.after(1000,lambda: get_messages(username))
 chat_window = tk.Tk()
 message=tk.StringVar()
@@ -32,3 +32,4 @@ mesage_send=tk.Button(chat_window,text='Send',command=lambda: post_message(messa
 mesage_send.place(x=50,y=80)
 get_messages(username)
 chat_window.mainloop()
+
