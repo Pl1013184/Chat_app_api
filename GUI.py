@@ -4,7 +4,11 @@ import login
 import requests
 import Gt_rm
 username = login.LogIN()[True]
-room = Gt_rm.main()
+Gt_rm.main()
+with open('file.txt', 'r') as f:
+    room=f.read()
+with open('file.txt','w') as f:
+    f.write('')
 print(room)
 def post_message(message,username,room):
     requests.put(f'http://192.168.191.173:5000/main/{room}', data={'data': message,"username":username})
@@ -29,6 +33,7 @@ username_entry.place(x=100,y=50)
 chat_frame = tk.Frame(chat_window,relief='raised',borderwidth=5)
 chat_frame.place(x=50,y=100)
 room_label = tk.Label(chat_frame,text=f'Room:{room}')
+room_label.pack(side='top')
 chats_window=tk.Text(chat_frame,width=50,height=20)
 chats_window.pack(side='bottom')
 #accesschat=tk.Button(chat_frame,text='Access Chat',command=lambda: get_messages(username,messages))
