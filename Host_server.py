@@ -1,6 +1,6 @@
 from flask import Flask, request, jsonify
 app = Flask(__name__)
-@app.route('/main/<room>', methods=['GET', 'POST'])
+@app.route('/main/<room>', methods=['GET', 'PUT'])
 def main(room):
     try:
         f=open(f'data_{room}.txt','x')
@@ -13,7 +13,7 @@ def main(room):
         if data is None:
             data="nothing"
         return f'{username}:{data}'
-    if request.method == 'POST':
+    if request.method == 'PUT':
         data = request.form.get('data')
         username = request.form.get('username')
         f=open(f'data_{room}.txt','a')

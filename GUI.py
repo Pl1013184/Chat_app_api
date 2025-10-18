@@ -1,10 +1,11 @@
 import tkinter as tk
 import login
 import requests
+import Gt_rm
 username = login.LogIN()[True]
-
+room = Gt_rm.main()
 def post_message(message,username,room):
-    requests.post(f'http://192.168.191.173:5000/main/{room}', data={'data': message,"username":username})
+    requests.put(f'http://192.168.191.173:5000/main/{room}', data={'data': message,"username":username})
 
 
 def get_messages(username,room):

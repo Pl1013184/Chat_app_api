@@ -13,4 +13,4 @@ def main():
     tk.Entry(root,textvariable=room).grid(row=0, column=1)
     tk.Button(root, text='Get Room', command=lambda:get_rom(room)).grid(row=0, column=2)
     root.mainloop()
-main()
+#main()
