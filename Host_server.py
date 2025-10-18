@@ -3,7 +3,11 @@ app = Flask(__name__)
 @app.route('/main/<room>', methods=['GET', 'PUT'])
 def main(room):
     try:
+        rooms=open('rooms.txt','a')
         f=open(f'data_{room}.txt','x')
+        rooms.write(room+'\n')
+        f.close()
+        rooms.close()
         f.close()
     except:
         pass

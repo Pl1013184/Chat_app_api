@@ -4,13 +4,14 @@ import requests
 import Gt_rm
 username = login.LogIN()[True]
 room = Gt_rm.main()
+print(room)
 def post_message(message,username,room):
     requests.put(f'http://192.168.191.173:5000/main/{room}', data={'data': message,"username":username})
 
 
 def get_messages(username,room):
     response =requests.get(f'http://192.168.191.173:5000/main/{room}',data={'username':username})
-    print(response.text)
+    #print(response.text)
     chats_window.delete('1.0',tk.END)
     chats_window.insert('1.0',requests.get(f'http://192.168.191.173:5000/main/{room}',data={'username':username}).text)
     chat_window.after(1000,lambda: get_messages(username,room))
@@ -32,5 +33,5 @@ chats_window.pack(side='top')
 #accesschat.pack()
 mesage_send=tk.Button(chat_window,text='Send',command=lambda: post_message(message.get(),username))
 mesage_send.place(x=50,y=80)
-get_messages(username)
+get_messages(username,room)
 chat_window.mainloop()
