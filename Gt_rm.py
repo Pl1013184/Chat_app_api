@@ -1,8 +1,7 @@
 import tkinter as tk
 from tkinter import ttk
 def get_rom(room,root):
-    print(room.get())
-    root.destroy()
+    #root.destroy()
     return room.get()
 def find_room(room,ROOMs):
     lst=[]
@@ -30,4 +29,5 @@ def main():
     tk.Label(frame,textvariable=ROOMs).grid(row=0, column=0)
     tk.Button(root, text='Get Room', command=lambda:get_rom(room,root)).grid(row=0, column=2)
     tk.Button(root, text='Find Room', command=lambda:find_room(room,ROOMs)).grid(row=1, column=2)
+    tk.Button(root, text='Exit', command=root.destroy).grid(row=2, column=2)
     root.mainloop()

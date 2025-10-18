@@ -1,4 +1,5 @@
 import tkinter as tk
+from tkinter import ttk
 import login
 import requests
 import Gt_rm
@@ -24,11 +25,12 @@ chat_window.geometry('600x300')
 user_label = tk.Label(chat_window,text=f'{username}:')
 user_label.place(x=25,y=50)
 username_entry = tk.Entry(chat_window, width=20,textvariable=message)
-username_entry.place(x=50,y=50)
+username_entry.place(x=100,y=50)
 chat_frame = tk.Frame(chat_window,relief='raised',borderwidth=5)
 chat_frame.place(x=50,y=100)
+room_label = tk.Label(chat_frame,text=f'Room:{room}')
 chats_window=tk.Text(chat_frame,width=50,height=20)
-chats_window.pack(side='top')
+chats_window.pack(side='bottom')
 #accesschat=tk.Button(chat_frame,text='Access Chat',command=lambda: get_messages(username,messages))
 #accesschat.pack()
 mesage_send=tk.Button(chat_window,text='Send',command=lambda: post_message(message.get(),username))
