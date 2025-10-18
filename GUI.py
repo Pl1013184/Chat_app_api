@@ -3,15 +3,16 @@ import login
 import requests
 username = login.LogIN()[True]
 
-def post_message(message,username):
-    requests.post(f'http://192.168.191.173:5000//main/', data={'data': message,"username":username})
+def post_message(message,username,room):
+    requests.post(f'http://192.168.191.173:5000/main/{room}', data={'data': message,"username":username})
 
 
-def get_messages(username):
-    response =requests.get(f'http://192.168.191.173:5000/main/',data={'username':username})
+def get_messages(username,room):
+    response =requests.get(f'http://192.168.191.173:5000/main/{room}',data={'username':username})
     print(response.text)
-    messages.set(requests.get(f'http://192.168.191.173:5000//main/',data={'username':username}).text)
-    chat_window.after(1000,lambda: get_messages(username))
+    chats_window.delete('1.0',tk.END)
+    chats_window.insert('1.0',requests.get(f'http://192.168.191.173:5000/main/{room}',data={'username':username}).text)
+    chat_window.after(1000,lambda: get_messages(username,room))
 chat_window = tk.Tk()
 message=tk.StringVar()
 messages=tk.StringVar()
@@ -24,7 +25,7 @@ username_entry = tk.Entry(chat_window, width=20,textvariable=message)
 username_entry.place(x=50,y=50)
 chat_frame = tk.Frame(chat_window,relief='raised',borderwidth=5)
 chat_frame.place(x=50,y=100)
-chats_window=tk.Label(chat_frame,textvariable=messages)
+chats_window=tk.Text(chat_frame,width=50,height=20)
 chats_window.pack(side='top')
 #accesschat=tk.Button(chat_frame,text='Access Chat',command=lambda: get_messages(username,messages))
 #accesschat.pack()
