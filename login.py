@@ -5,7 +5,7 @@ from tkinter import messagebox
 def main():
     con = sqlite3.connect("Login.db")
     cur = con.cursor()
-    cur.execute("CREATE TABLE IF NOT EXISTS login_info(User_ID INTEGER  PRIMARY KEY, username varchar(255), password varchar(255))")
+    cur.execute("CREATE TABLE IF NOT EXISTS login_info(User_ID INTEGER  PRIMARY KEY, username varchar(255), password varchar(255),admin boolean)")
     con.commit()
     con.close()
 def Login(username, password):
@@ -27,7 +27,7 @@ def CreateLOGINFO(x,y):
 
     con = sqlite3.connect("Login.db")
     cur = con.cursor()
-    cur.execute(f"INSERT INTO login_info VALUES(null,?,?)",(x,y))
+    cur.execute(f"INSERT INTO login_info VALUES(null,?,?,False)",(x,y))
     tk.messagebox.showinfo(title="Sucess!",message= f'Username, Password inputted:{x},{y}')
     con.commit()
     con.close()

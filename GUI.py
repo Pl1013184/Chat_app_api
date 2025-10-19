@@ -3,14 +3,12 @@ from tkinter import ttk
 import login
 import requests
 import Gt_rm
-#username = login.LogIN()[True]
-#Gt_rm.main()
-username= 'admin'
+username = login.LogIN()[True]
+Gt_rm.main()
 with open('file.txt', 'r') as f:
     room=f.read()
 with open('file.txt','w') as f:
     f.write('')
-room='test'
 print(room)
 def post_message(message,username,room):
     requests.put(f'http://192.168.191.173:5000/main/{room}', data={'data': message,"username":username})
