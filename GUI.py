@@ -2,15 +2,15 @@ import tkinter as tk
 import login
 import requests
 username = login.LogIN()[True]
-
+api_url='http://172.20.140.6:5000/main'
 def post_message(message,username):
-    requests.post(f'http://http://192.168.191.173:5000/main/', data={'data': message,"username":username})
+    requests.post(api_url, data={'data': message,"username":username})
 
 
 def get_messages(username):
-    response =requests.get(f'http://http://192.168.191.173:5000/main/',data={'username':username})
+    response =requests.get(api_url,data={'username':username})
     #print(response.text)
-    messages.set(requests.get(f'http://http://192.168.191.173:5000/main/',data={'username':username}).text)
+    messages.set(requests.get(api_url,data={'username':username}).text)
     chat_window.after(1000,lambda: get_messages(username))
 chat_window = tk.Tk()
 message=tk.StringVar()
